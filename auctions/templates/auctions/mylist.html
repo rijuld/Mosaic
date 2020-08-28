@@ -1,0 +1,18 @@
+{%extends "auctions/layout.html"%}
+{%block body%}
+<h2>The auctions you have started are here</h2>
+{%for i in v%}
+<ul>
+	<li>
+		{{i.title}}
+		<p>status:{{i.status}}</p>
+		<form action="{%url 'close' title=i.title%}" method="post">
+			{%csrf_token%}
+			<input type="submit" value="close" class="btn btn-primary">
+			
+		</form>
+	</li>
+</ul>
+{%endfor%}
+
+{%endblock%}

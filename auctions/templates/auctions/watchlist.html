@@ -1,0 +1,16 @@
+{%extends "auctions/layout.html"%}
+{% block body%}
+<h1>Your watchlist</h1>
+<ul>
+{%for i in lists %}
+<li><a href="{%url 'listing' title=i.item.title%}">{{i.item.title}}</a></li>
+<div>
+<form action="{% url 'remove' title=i.item.title %}" method="post">
+	{%csrf_token%}
+	<input type="submit" value="remove from your watchlist" class="btn btn-primary">
+	
+</form>
+</div>
+{%endfor%}
+</ul>
+{%endblock %}

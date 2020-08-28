@@ -1,0 +1,7 @@
+{%extends "auctions/layout.html"%}
+{%block body%}
+<h2>Select any category from here!</h2>
+{%for item in cat%}
+<ul><li>{{item}}</li></ul>
+{%endfor%}
+{%endblock%}

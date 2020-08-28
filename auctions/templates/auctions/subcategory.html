@@ -1,0 +1,7 @@
+{%extends "auctions/layout.html"%}
+{%block body%}
+<h2>The listings in this categories are:</h2>
+{%for item in cat%}
+<ul><li><a href="{%url 'listing' title=item.title%}">{{item.title}}</a></li></ul>
+{%endfor%}
+{%endblock%}
