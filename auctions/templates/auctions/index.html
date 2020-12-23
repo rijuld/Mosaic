@@ -5,21 +5,20 @@
 		
 	</ul>
     <h2>Active Listings</h2>
-    <ul>
-   		{% for key,value in k.items %}
-        
-
-
-    	<li><h3><a href="{% url 'listing' title=key.title %}">{{ key.title}}</a></h3></li>
-    	<ul>
-    		<li><img src="{{key.image}}" alt="this is the image if the bidding item" height="400px" class="img"></li>
-    		<li>The price of the item is:{{value.bids}}</li>
-    		<li>{{key.description}}</li>
-    		
-    	</ul>
-    	
-    	{% endfor%}
-	</ul>
-
-    TODO
+	<div class="scrolling-wrapper">
+		{% for key,value in k.items %}
+		<div class="card">
+	
+			<li><h3 ><a href="{% url 'listing' title=key.title %}">{{ key.title}}</a></h3></li>
+			<ul class="hello">
+				<li><img src="{{key.image}}" alt="this is the image if the bidding item" height="400px" class="img"></li>
+				<li>The price of the item is:{{value.bids}}</li>
+				<li>{{key.description}}</li>
+				
+			</ul>
+		</div>
+			
+		
+			{% endfor%}
+	  </div>
 {% endblock %}
