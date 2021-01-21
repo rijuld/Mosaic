@@ -1,5 +1,5 @@
 from django.urls import path
-
+from django.conf.urls import url
 from . import views
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
     path("subcategory/<str:title>",views.subcategory,name="subcategory"),
     path('mylist',views.mylist,name="mylist"),
     path('close/<str:title>',views.close,name="close"),
-    path("won", views.won, name="won")
-    
+    path("won", views.won, name="won"),
+ 
     
 ]

@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row">
+            <div class="sidebar col-lg-2 col-md-3">
+                <h2 class="col-12 d-flex justify-content-center">The Movie</h2>
+                <h3 class="col-12 d-flex justify-content-center">Club BPHC</h3>
+                <div class="popcorn">
+                    <img src="{% static 'encyclopedia/images/f.svg' %}" class=" mt-5 col-12  d-flex justify-content-center">
+                </div>
+                <form action="{% url 'wiki:info' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row d-flex justify-content-center">
+                        <div class="form-group">
+                    <input class="search d-flex justify-content-center  form-control" type="text" name="q" placeholder="Search a Movie!">
+                       </div>
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    </div>
+                    
+                </form>
+                <div class="col-12  d-flex justify-content-center">
+                    <p> <a href="{% url 'wiki:index' %}" class="text-light">Home</a></p> 
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <p> <a href="{%url 'wiki:add' %}" class="text-light">Add New Movie</a></p> 
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <p> <a href="{%url 'wiki:random'%}" class="text-light">Random Movie</a></p> 
+                </div>
+                
+                
+                {% block nav %}
+                {% endblock %}
+            </div>
+            <div class="main col-lg-10 col-md-9">
+                {% block body %}
+                {% endblock %}
+                <div class="popcorn">
+                    <img src="{% static 'encyclopedia/images/g.svg' %}">
+                </div>
+            </div>
+            <div class="footer">
+                <p>do write your own reviews</p>
+              </div>
+        </div>
+
+    </body>
+</html>

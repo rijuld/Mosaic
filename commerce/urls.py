@@ -22,4 +22,5 @@ urlpatterns = [
     path("", include("auctions.urls")),
     path('accounts/', include('allauth.urls')),
     path("", TemplateView.as_view(template_name="auctions/auth.html")), # <--
+    path('wiki/', include("encyclopedia.urls")),
 ]

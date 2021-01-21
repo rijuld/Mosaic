@@ -253,10 +253,6 @@ def close(request,title):
 
 
 
-		
-
-
-
 
 
 
