@@ -1,0 +1,21 @@
+{% extends "network/layout.html"%}
+{% load static %}
+{%block body%}
+
+<div class="d-flex align-items-center justify-content-center">
+<form id="compose-form">
+	<label for="text">Hey {{request.user}}!, what's in your mind today? </label>
+	<textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+	<input type="submit" class="btn btn-outline-success my-2 my-sm-0"></input>
+</form>
+
+</div>
+<h1>In the buff, off the cuff</h1>
+<div id="poss"></div>
+{%endblock%}
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+    {{ request.user.id|json_script:"user_id" }}
+   
+
+{% endblock %}

@@ -1,0 +1,13 @@
+
+{% extends "encyclopedia/base.html" %}
+
+{% block content %}
+<div class="clearfix row d-flex align-items-center justify-content-center">
+    <a class="btn btn-info col-3" href="{% url 'wiki:calendar' %}?{{ prev_month }}"> Previous Month </a>
+    <a class="btn btn-info col-3" href="{% url 'wiki:event_new' %}"> Add a new Movie! </a>
+    <a class="btn btn-info col-3" href="{% url 'wiki:calendar' %}?{{ next_month }}"> Next Month </a>
+    
+</div>
+
+{{ calendar }}
+{% endblock %}

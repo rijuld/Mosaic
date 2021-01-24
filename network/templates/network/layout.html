@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'network/styles.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        {%block script%}
+        {%endblock%}
+    </head>
+    <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+          <a class="navbar-brand" href="{% url 'network:index' %}"><img src="{% static 'network/images/b copy.svg' %}" height="80px"></a>
+          
+            <div>
+              <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'network:mypage' %}"><strong>{{ user.username }}</strong></a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'network:index' %}">All Posts</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'network:follow'%}">Following</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'wiki:index' %}">Movie Finder</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auctions:index' %}">Buy some merch!</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'network:logout' %}">Log Out</a>
+              </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'network:login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'network:register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+            <div class="popcorn d-flex align-items-center justify-content-center">
+                <img src="{% static 'network/images/a.svg' %}" height="30%" class="img">
+            </div>
+          
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+            <div class="d-flex align-items-center justify-content-center">
+            <div id="usern" style="display: none;">{{request.user}}</div>
+            <div id="paged" style="display: none;">{{page_obj.number}}</div>
+            {% if page_obj.has_previous %}
+              <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+              <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+      
+            {% for num in page_obj.paginator.page_range %}
+              {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+              {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+              {% endif %}
+            {% endfor %}
+      
+            {% if page_obj.has_next %}
+              <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+              <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+          </div>
+         </div>
+    </body>
+</html>

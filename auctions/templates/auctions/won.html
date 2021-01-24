@@ -10,7 +10,7 @@
         
 
 
-    	<li><a href="{% url 'listing' title=item.title %}">{{ item.title }}</a></li>	
+    	<li><a href="{% url 'auctions:listing' title=item.title %}">{{ item.title }}</a></li>	
     	</ul>
     	
     	{% endfor%}

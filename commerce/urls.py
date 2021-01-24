@@ -19,8 +19,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("auctions.urls")),
+    path("auctions/", include("auctions.urls")),
     path('accounts/', include('allauth.urls')),
-    path("", TemplateView.as_view(template_name="auctions/auth.html")), # <--
-    path('wiki/', include("encyclopedia.urls")),
+    path('moviefinder/', include("encyclopedia.urls")),
+    path("", include("network.urls")),
 ]

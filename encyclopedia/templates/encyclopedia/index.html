@@ -6,6 +6,10 @@
 
 {% block body %}
     <h1 class="allmovies">All Movies</h1>
+    <h4>The movie added most to the calendar is the <span style="color: #e90a0a;">
+
+        <a href="{% url 'wiki:title' title=mc %}">{{mc}}</a></span>
+        </h4>
 
     <ul>
         {% for entry in entries %}

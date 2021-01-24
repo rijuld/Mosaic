@@ -1,5 +1,5 @@
 {% extends "auctions/layout.html" %}
-
+{% load socialaccount %}<!--new-->
 {% block body %}
 
     <h2>Please Login</h2>
@@ -8,7 +8,7 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'auctions:login' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
             <input autofocus class="form-control" type="text" name="username" placeholder="Username">
@@ -18,7 +18,7 @@
         </div>
         <input class="btn btn-primary " type="submit" value="Login">
     </form>
-
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a> Or login through <a href="http://127.0.0.1:8000/accounts/google/login/?process=login">Gmail</a>
+    
+    Don't have an account? <a href="{% url 'auctions:register' %}">Register here.</a> <a href="{% provider_login_url 'google' %}">Login with Google</a>
 
 {% endblock %}

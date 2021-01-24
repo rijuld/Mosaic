@@ -20,7 +20,7 @@
             {% endif %}
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'auctions/images/b.svg' %}" height="80px"></a>
+            <a class="navbar-brand" href="{% url 'auctions:index' %}"><img src="{% static 'auctions/images/b.svg' %}" height="80px"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,43 +28,44 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'index' %}">Active Listings <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{% url 'auctions:index' %}">Active Listings <span class="sr-only">(current)</span></a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  <a class="nav-link" href="{% url 'auctions:logout' %}">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                    <a class="nav-link" href="{% url 'auctions:watchlist' %}">Watchlist</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'createlisting' %}">Createlisting</a>
+                    <a class="nav-link" href="{% url 'auctions:createlisting' %}">Createlisting</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'category' %}">Categories</a>
+                    <a class="nav-link" href="{% url 'auctions:category' %}">Categories</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'mylist' %}">Mylist</a>
+                    <a class="nav-link" href="{% url 'auctions:mylist' %}">Mylist</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'won' %}">Won</a>
+                    <a class="nav-link" href="{% url 'auctions:won' %}">Won</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'wiki:index' %}">Movie Finder</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'network:index' %}">Discussions</a>
                   </li>
         
                   {% else %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-link" href="{% url 'auctions:login' %}">Login</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-link" href="{% url 'auctions:register' %}">Register</a>
                   </li>
                   {% endif %}
                 
               </ul>
-              <form id="search" method="POST" action="" class="form-inline my-2 my-lg-0">
-                {% csrf_token %}
-                <input type="search" class="form-control form-control mr-sm-2" id="txtSearch" name="txtSearch" placeholder="Search">
-                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Submit</button>
-                </form>
 
             </div>
           </nav>

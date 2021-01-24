@@ -3,14 +3,17 @@
 <h1>Your watchlist</h1>
 <ul>
 {%for i in lists %}
-<li><a href="{%url 'listing' title=i.item.title%}">{{i.item.title}}</a></li>
+<li><a href="{%url 'auctions:listing' title=i.item.title%}">{{i.item.title}}</a></li>
 <div>
-<form action="{% url 'remove' title=i.item.title %}" method="post">
+<form action="{% url 'auctions:remove' title=i.item.title %}" method="post">
 	{%csrf_token%}
 	<input type="submit" value="remove from your watchlist" class="btn btn-primary">
 	
 </form>
 </div>
 {%endfor%}
+{% if not lists%}
+<h4> Oops! Your watchlist is empty</h4>
+{%endif%}
 </ul>
 {%endblock %}

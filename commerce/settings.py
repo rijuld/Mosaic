@@ -31,8 +31,10 @@ ALLOWED_HOSTS = ["0.0.0.0","immense-inlet-05074.herokuapp.com","127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
+    'network',
     'encyclopedia',
     'auctions',
+    'chartjs',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

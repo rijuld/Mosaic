@@ -7,5 +7,7 @@
 {% block body %}
 {{ content|safe }}
 <a href="{% url 'wiki:edit' title=title%}">EDIT PAGE</a>
+<span>
+<a href="{% url 'wiki:event_add' title=title%}"> ADD THIS MOVIE TO YOUR CALENDAR</a></span>
 
 {% endblock %}

@@ -2,6 +2,6 @@
 {%block body%}
 <h2>Select any category from here</h2>
 {%for item in cat%}
-<ul><li><a href="{%url 'subcategory' title=item.x%}">{{item.x}}</a></li></ul>
+<ul><li><a href="{%url 'auctions:subcategory' title=item.x%}">{{item.x}}</a></li></ul>
 {%endfor%}
 {%endblock%}

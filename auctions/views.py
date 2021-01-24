@@ -71,7 +71,7 @@ def login_view(request):
 		# Check if authentication successful
 		if user is not None:
 			login(request, user)
-			return HttpResponseRedirect(reverse("index"))
+			return HttpResponseRedirect(reverse("auctions:index"))
 		else:
 			return render(request, "auctions/login.html", {
 				"message": "Invalid username and/or password."
@@ -82,7 +82,7 @@ def login_view(request):
 
 def logout_view(request):
 	logout(request)
-	return HttpResponseRedirect(reverse("index"))
+	return HttpResponseRedirect(reverse("auctions:index"))
 
 
 def register(request):
@@ -107,7 +107,7 @@ def register(request):
 				"message": "Username already taken."
 			})
 		login(request, user)
-		return HttpResponseRedirect(reverse("index"))
+		return HttpResponseRedirect(reverse("auctions:index"))
 	else:
 		return render(request, "auctions/register.html")
 	
@@ -190,10 +190,11 @@ def createlisting(request):
 			f.save()
 			g=bid(person=request.user,item=f,bids=f.startingprice)
 			g.save()
-
+	c=Categories.objects.all()
 	form=createform()
 	return render(request,"auctions/createlisting.html",{
-		"form":form
+		"form":form,
+		"cat":c
 		})
 
 def category(request):
@@ -207,7 +208,7 @@ def add(request,title):
 		user = request.user 
 		f =watchlist(user=user,item=listing)
 		f.save()
-		return HttpResponseRedirect(reverse("listing",kwargs={'title': title}))
+		return HttpResponseRedirect(reverse("auctions:listing",kwargs={'title': title}))
 @login_required(login_url='login')
 def remove(request,title):
 	if request.method=="POST":
@@ -215,7 +216,7 @@ def remove(request,title):
 		user = request.user 
 		f =watchlist.objects.get(user=user,item=listing)
 		f.delete()
-		return HttpResponseRedirect(reverse("listing",kwargs={'title': title}))
+		return HttpResponseRedirect(reverse("auctions:listing",kwargs={'title': title}))
 
 def subcategory(request,title):
 	if request.method=="POST":
@@ -226,7 +227,7 @@ def subcategory(request,title):
 			item=auctionlisting.objects.get(title=title)
 			f =comments(user=user,item=item,comment=comment)
 			f.save()
-			return HttpResponseRedirect(reverse("listing",kwargs={'title': title}))
+			return HttpResponseRedirect(reverse("auctions:listing",kwargs={'title': title}))
 	cate=Categories.objects.get(x=title)
 	a=auctionlisting.objects.filter(category=cate)
 	return render(request,"auctions/subcategory.html",{
@@ -250,8 +251,6 @@ def close(request,title):
 		"v":v
 		})
 	
-
-
 
 
 

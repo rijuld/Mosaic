@@ -6,7 +6,7 @@
 <h1>The listing for {{ listing.title }}</h1><p>Category : {{listing.category.x}}</p>
 {% if j == 0 %}
 <div>
-<form action="{% url 'add' title=listing.title %}" method="post">
+<form action="{% url 'auctions:add' title=listing.title %}" method="post">
 	{%csrf_token%}
 	<input type="submit" value="add to your watchlist" class="btn btn-primary">
 	
@@ -15,7 +15,7 @@
 {%endif%}
 {% if j == 1 %}
 <div>
-<form action="{% url 'remove' title=listing.title %}" method="post">
+<form action="{% url 'auctions:remove' title=listing.title %}" method="post">
 	{%csrf_token%}
 	<input type="submit" value="remove from your watchlist" class="btn btn-primary">
 	
@@ -26,7 +26,7 @@
 <img src="{{listing.image}}" alt="this is an  image" height="400px"class="img" >
 <div class="black"><p>{{listing.description}}</p></div>
 Current hightest bid is Rs.{{d.bids}} which is by {{d.person}}
-<form action="{%url 'listing' title=listing.title%}" method="post">
+<form action="{%url 'auctions:listing' title=listing.title%}" method="post">
 	{%csrf_token%}
 	{{form}}
 	<input type="submit" value="bid" class="btn btn-primary">
@@ -45,7 +45,7 @@ Current hightest bid is Rs.{{d.bids}} which is by {{d.person}}
 {%endfor%}
 <hr>
 <h6>Add your comment</h6>
-<form action="{%url 'subcategory' title=listing.title%}" method="post">
+<form action="{%url 'auctions:subcategory' title=listing.title%}" method="post">
 {%csrf_token%}
 {{commentform}}
 <input type="submit" value="send" class="btn btn-primary">

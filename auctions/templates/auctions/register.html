@@ -1,4 +1,5 @@
 {% extends "auctions/layout.html" %}
+{% load socialaccount %}<!--new-->
 
 {% block body %}
 
@@ -8,7 +9,7 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'register' %}" method="post">
+    <form action="{% url 'auctions:register' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
             <input class="form-control" autofocus type="text" name="username" placeholder="Username">
@@ -25,6 +26,6 @@
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
 
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a> Or login through <a href="{% url 'login' %}">Gmail</a>
+    Already have an account? <a href="{% url 'auctions:login' %}">Log In here.</a> <a href="{% provider_login_url 'google' %}">Login with Google</a>
 
 {% endblock %}
