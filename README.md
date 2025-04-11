@@ -1,4 +1,4 @@
- #The movie project-
+ #The movie project- Link: https://www.youtube.com/watch?v=jt_bFwAqxxI
 The project is divided into three parts, one the movie finder, the discussions group and mosaic the buying applications.
 Each of the applications are built on Django and mainly comprise of python and javascript.
 
